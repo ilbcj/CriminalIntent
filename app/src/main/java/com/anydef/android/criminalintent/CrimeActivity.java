@@ -7,18 +7,11 @@ import android.os.Bundle;
 
 import static com.anydef.android.criminalintent.R.id.fragment_container;
 
-public class CrimeActivity extends AppCompatActivity {
+public class CrimeActivity extends SingleFragmentActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crime);
-
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = fm.findFragmentById(fragment_container);
-        if( fragment == null ) {
-            fragment = new CrimeFragment();
-            fm.beginTransaction().add(fragment_container,fragment).commit();
-        }
+    protected Fragment createFragment() {
+        Fragment  fragment = new CrimeFragment();
+        return fragment;
     }
 }
