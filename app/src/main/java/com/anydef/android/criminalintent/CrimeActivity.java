@@ -18,7 +18,7 @@ public class CrimeActivity extends AppCompatActivity {
         Fragment fragment = fm.findFragmentById(fragment_container);
         if( fragment == null ) {
             fragment = new CrimeFragment();
-            fm.beginTransaction().add(fragment_container).commit();
+            fm.beginTransaction().add(fragment_container,fragment).commit();
         }
     }
 }
