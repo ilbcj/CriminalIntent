@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -26,6 +27,8 @@ public class CrimeFragment extends Fragment {
     private EditText mTitleField;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
+    private Button mFirstButton;
+    private Button mLastButton;
 
     public static CrimeFragment newInstance(UUID crimeId) {
         Bundle args = new Bundle();
@@ -77,6 +80,30 @@ public class CrimeFragment extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mCrime.setSolved(isChecked);
+            }
+        });
+
+        mFirstButton = (Button) v.findViewById(R.id.jump_to_first);
+        mLastButton = (Button) v.findViewById(R.id.jump_to_last);
+        mFirstButton.setEnabled(true);
+        mLastButton.setEnabled(true);
+        List<Crime> crimes = CrimeLab.get(getActivity()).getCrimes();
+        if (mCrime.getId().equals( crimes.get(0).getId())) {
+            mFirstButton.setEnabled(false);
+        }
+        else if (mCrime.getId().equals( crimes.get(crimes.size() - 1).getId())) {
+            mLastButton.setEnabled(false);
+        }
+        mFirstButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //
+            }
+        });
+        mLastButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                //mViewPager.setCurrentItem(mCrimes.size() - 1);
             }
         });
 
