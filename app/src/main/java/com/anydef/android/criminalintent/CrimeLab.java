@@ -23,12 +23,25 @@ public class CrimeLab {
 
     private CrimeLab(Context context) {
         mCrimes = new ArrayList<>();
-        for(int i = 0; i < 100; i++) {
+        /*for(int i = 0; i < 100; i++) {
             Crime crime = new Crime();
             crime.setTitle("Crime #" + i);
             crime.setSolved(i % 2 == 0);
             mCrimes.add(crime);
+        }*/
+    }
+
+    public void addCream(Crime c) {
+        mCrimes.add(c);
+    }
+
+    public void delCrime(UUID id) {
+        for(Crime crime : mCrimes) {
+            if(crime.getId().equals(id)) {
+                mCrimes.remove(crime);
+            }
         }
+        return;
     }
 
     public List<Crime> getCrimes() {
